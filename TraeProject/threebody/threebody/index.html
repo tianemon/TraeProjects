@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三体文明模拟器</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入Matter.js物理引擎库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>三体文明模拟器</h1>
+        </header>
+        
+        <div class="game-area">
+            <div class="canvas-container">
+                <canvas id="simulationCanvas" width="800" height="600"></canvas>
+            </div>
+            
+            <div class="info-panel">
+                <div class="panel-section">
+                    <h2>游戏控制</h2>
+                    <div class="button-group">
+                        <button id="randomizeBtn">随机初始化</button>
+                        <button id="startBtn">开始/暂停</button>
+                        <button id="resetBtn">重置游戏</button>
+                        <button id="fastForwardBtn">快进 (1x)</button>
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h2>行星状态</h2>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">模拟时间</span>
+                            <span class="stat-value" id="simulationTime">0 年</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">地表温度</span>
+                            <span class="stat-value" id="surfaceTemp">-- °C</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">生命状态</span>
+                            <span class="stat-value" id="lifeStatus">无生命</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">科技等级</span>
+                            <span class="stat-value" id="techLevel">--</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">发展时间</span>
+                            <span class="stat-value" id="developmentTime">0 年</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">总进度</span>
+                            <span class="stat-value" id="overallProgress">0%</span>
+                        </div>
+                    </div>
+                    <div class="temperature-indicator">
+                        <div class="temperature-mark" style="left: 0%;">-273°C</div>
+                        <div class="temperature-mark" style="left: 20%;">-100°C</div>
+                        <div class="temperature-mark" style="left: 40%;">-20°C</div>
+                        <div class="temperature-mark" style="left: 60%;">50°C</div>
+                        <div class="temperature-mark" style="left: 80%;">80°C</div>
+                        <div class="temperature-mark" style="left: 100%;">100°C</div>
+                        <div class="temperature-pointer" id="tempPointer" style="left: 50%;"></div>
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h2>文明发展</h2>
+                    <div class="era-progress">
+                        <div class="era-name" id="currentEra">--</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+                            <div class="progress-text" id="progressText">0%</div>
+                        </div>
+                    </div>
+                    <div class="era-progress">
+                        <div class="era-name">累计科技等级</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="totalProgressFill" style="width: 0%;"></div>
+                            <div class="progress-text" id="totalProgressText">0%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h2>历史记录</h2>
+                    <div class="game-history" id="gameHistory">
+                        <div class="history-entry">游戏开始，等待初始化...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+    <div class="success-message" id="successMessage">
+        <h2>🎉 文明成功逃离！</h2>
+        <p>恭喜！三体文明成功发展到星际时代并逃离了三体星系！</p>
+        <button id="restartBtn">重新开始</button>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
